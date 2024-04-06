@@ -1,0 +1,55 @@
+{
+  "name": "crowdfunfing-factory",
+  "version": "0.1.0",
+  "description": "solidity contract excercise - Crowdfunding contracts when all expenses must be approved by majority of vendors",
+  "main": "index.js",
+  "license": "ISC",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4",
+    "@truffle/hdwallet-provider": "^2.1.15",
+    "ganache": "^7.9.2",
+    "mocha": "^10.2.0",
+    "solc": "^0.8.24",
+    "web3": "^4.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "mocha",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "solidity",
+    "blockchain",
+    "smart",
+    "contract"
+  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "type": "module"
+}
