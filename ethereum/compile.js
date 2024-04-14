@@ -34,6 +34,7 @@ const compiledContracts = JSON.parse(
 ).contracts;
 
 fs.ensureDirSync(buildPath);
+fs.emptyDirSync(buildPath);
 
 const file = "Crowdfunding.sol";
 for (let contractName in compiledContracts[file]) {
@@ -43,4 +44,4 @@ for (let contractName in compiledContracts[file]) {
   );
 }
 
-export const { abi, evm } = compiledContracts["Crowdfunding.sol"].Crowdfunding;
+// export const { abi, evm } = compiledContracts["Crowdfunding.sol"].Crowdfunding;
