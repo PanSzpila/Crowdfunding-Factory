@@ -23,8 +23,10 @@ beforeEach(async () => {
       .deploy({
         data: compiledFactory.evm.bytecode.object,
       })
-      .send({ from: accounts[0], gas: 10000000 });
-  } catch (error) {}
+      .send({ from: accounts[0], gas: 1500000 });
+  } catch (error) {
+    console.error(error);
+  }
 
   try {
     await factory.methods.createCrowdfunding("100").send({
@@ -34,6 +36,8 @@ beforeEach(async () => {
   } catch (error) {
     console.error(error);
   }
+
+  // console.log("factory", factory);
   [crowdfundingAddress] = await factory.methods
     .getDeployedCrowdfundings()
     .call(); //destructurisation - take first element of array and assaign it for variable crowdfundingAdress
@@ -49,6 +53,56 @@ describe("Crowdfundings", () => {
     assert.ok(factory.options.address);
     assert.ok(crowdfunding.options.address);
   });
+
+  it("marks caller as the crowdfunding manager", async () => {
+    const manager = await crowdfunding.methods.manager().call();
+    assert.equal(accounts[0], manager);
+  });
+
+  it("allows people to contribute money and marks them as approvers", async () => {
+    await crowdfunding.methods.contribute().send({
+      value: "200",
+      from: accounts[1],
+    });
+    const isContributor = await crowdfunding.methods
+      .approvers(accounts[1])
+      .call();
+    assert(isContributor);
+  });
+
+  it("requires a minimum contribution", async () => {
+    try {
+      await crowdfunding.methods.contribute().send({
+        value: "5",
+        from: accounts[1],
+      });
+      assert(false);
+    } catch (error) {
+      assert(error);
+    }
+  });
+
+  it("allows a manager to make a payment request", async () => {
+    crowdfunding.methods
+      .createRequest("Buy batteries", "100", accounts[2])
+      .send({ from: accounts[0], gas: "1000000" })
+      .on("transactionHash", function (hash) {
+        // console.log("transactionHash", hash);
+      })
+      .on("receipt", function (receipt) {
+        // console.log("receipt", receipt);
+      })
+      .on("confirmation", async function (confirmationNumber, receipt) {
+        // console.log("confirmation", confirmationNumber);
+        const request = await crowdfunding.methods.requests(0).call();
+        // console.log("request", request);
+        assert.equal("Buy batteries", request.description);
+      })
+      .on("error", console.error);
+  });
+  // it ('allows a manager to make a payment request', async () => {
+
+  // })
 });
 
 // describe("Lottery contract", () => {
