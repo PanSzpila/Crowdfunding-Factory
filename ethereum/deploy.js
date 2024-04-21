@@ -3,7 +3,6 @@
 import HDWalletProvider from "@truffle/hdwallet-provider";
 import { Web3 } from "web3";
 import compiledFactory from "../ethereum/build/CrowdfundingFactory.json" assert { type: "json" };
-//import compiledCrowdfunding from "../ethereum/build/Crowdfunding.json" assert { type: "json" };
 
 const provider = new HDWalletProvider(
   process.env.ACCOUNT_SRP,
