@@ -1,24 +1,16 @@
-import { useEffect, useState } from "react";
 import web3 from "../ethereum/web3";
 import factory from "../ethereum/factory";
 
-const index = () => {
-  const [crowdfundings, setCrowfundings] = useState([]);
+const index = ({ crowdfundings }) => {
+  return <div> {crowdfundings} </div>;
+};
 
-  useEffect(() => {
-    const getDeployedCrowdfundings = async () => {
-      if (web3 && factory) {
-        const fundings = await factory.methods
-          .getDeployedCrowdfundings()
-          .call();
-        setCrowfundings(fundings);
-        // console.log("fundings", fundings);
-      }
-    };
-    getDeployedCrowdfundings();
-  }, []);
-
-  return <div>this is the campaign list page </div>;
+index.getInitialProps = async () => {
+  let crowdfundings = [];
+  if (web3 && factory) {
+    crowdfundings = await factory.methods.getDeployedCrowdfundings().call();
+  }
+  return { crowdfundings };
 };
 
 export default index;
