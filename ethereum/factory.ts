@@ -1,7 +1,8 @@
 import web3 from "./web3";
-import compiledFactory from "../ethereum/build/CrowdfundingFactory.json" assert { type: "json" };
+import { Contract } from "web3-eth-contract";
+import compiledFactory from "./build/CrowdfundingFactory.json" assert { type: "json" };
 
-let instance;
+let instance: Contract<any> | null = null;
 
 if (web3) {
   instance = new web3.eth.Contract(
