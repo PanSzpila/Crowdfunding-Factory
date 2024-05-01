@@ -2,6 +2,9 @@ import web3 from "../ethereum/web3";
 import factory from "../ethereum/factory";
 import ContractCard from "../components/ContractCard";
 import { contract } from "web3/lib/commonjs/eth.exports";
+import Layout from "../components/layout/Layout";
+import { Button } from "@mui/material";
+import { AddBox } from "@mui/icons-material";
 
 interface IndexProps {
   crowdfundings: string[];
@@ -17,11 +20,19 @@ const index: IndexComponent = ({
   crowdfundings: string[];
 }) => {
   return (
-    <div>
-      {crowdfundings.map((contractNo) => (
-        <ContractCard contractNo={contractNo} />
-      ))}
-    </div>
+    <Layout>
+      <div>
+        <h3> Opern crowdfunding campains</h3>
+        <div>
+          {crowdfundings.map((contractNo) => (
+            <ContractCard contractNo={contractNo} />
+          ))}
+        </div>
+        <Button variant="contained" startIcon={<AddBox />}>
+          Create Crowdfunding
+        </Button>
+      </div>
+    </Layout>
   );
 };
 

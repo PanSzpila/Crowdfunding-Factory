@@ -15,7 +15,7 @@ export default function ContractCard({ contractNo }: { contractNo: string }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="medium">View Crowdfunding</Button>
+        <Button size="medium">View crowdfunding</Button>
       </CardActions>
     </Card>
   );
