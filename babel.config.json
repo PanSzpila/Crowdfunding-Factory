@@ -1,0 +1,12 @@
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      "@emotion/babel-plugin",
+      {
+        "autoLabel": "always",
+        "labelFormat": "[local]"
+      }
+    ]
+  ]
+}
