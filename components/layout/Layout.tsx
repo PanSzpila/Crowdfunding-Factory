@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import Header from "./Header";
+import { Container } from "@mui/system";
 
 interface LayoutProps {
   children: ReactNode;
@@ -8,9 +9,11 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
-      <Header />
-      {children}
-      <h1>here's footer</h1>
+      <Container maxWidth="xl">
+        <Header />
+        <Container maxWidth="xl">{children}</Container>
+        <h1>here's footer</h1>
+      </Container>
     </div>
   );
 };

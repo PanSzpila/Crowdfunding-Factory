@@ -20,6 +20,7 @@ const DarkModeToggle = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      {/*TODO:  move ThemeProvider and CssBaseline to _app.tsx to wrap the whole App and pass the value darkMode by context, or state manager*/}
       <CssBaseline />
       <div>
         <IconButton edge="end" color="inherit" onClick={handleThemeChange}>

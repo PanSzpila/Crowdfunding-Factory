@@ -21,16 +21,18 @@ const index: IndexComponent = ({
 }) => {
   return (
     <Layout>
+      <h3> Open crowdfundings</h3>
+      <Button
+        variant="contained"
+        style={{ float: "right", marginLeft: "2rem" }}
+        startIcon={<AddBox />}
+      >
+        Create Crowdfunding
+      </Button>
       <div>
-        <h3> Opern crowdfunding campains</h3>
-        <div>
-          {crowdfundings.map((contractNo) => (
-            <ContractCard contractNo={contractNo} />
-          ))}
-        </div>
-        <Button variant="contained" startIcon={<AddBox />}>
-          Create Crowdfunding
-        </Button>
+        {crowdfundings.map((contractNo) => (
+          <ContractCard contractNo={contractNo} />
+        ))}
       </div>
     </Layout>
   );

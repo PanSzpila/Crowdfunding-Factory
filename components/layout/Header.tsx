@@ -10,8 +10,8 @@ import { AddBox } from "@mui/icons-material";
 
 export default function Header() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1, marginTop: 2 }}>
+      <AppBar position="static" style={{ marginBottom: "2rem" }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Crowdfunding Gecko
