@@ -5,6 +5,7 @@ import { contract } from "web3/lib/commonjs/eth.exports";
 import Layout from "../components/layout/Layout";
 import { Button } from "@mui/material";
 import { AddBox } from "@mui/icons-material";
+import Link from "next/link";
 
 interface IndexProps {
   crowdfundings: string[];
@@ -22,16 +23,18 @@ const index: IndexComponent = ({
   return (
     <Layout>
       <h3> Open crowdfundings</h3>
-      <Button
-        variant="contained"
-        style={{ float: "right", marginLeft: "2rem" }}
-        startIcon={<AddBox />}
-      >
-        Create Crowdfunding
-      </Button>
+      <Link href="/crowdfundings/new">
+        <Button
+          variant="contained"
+          style={{ float: "right", marginLeft: "2rem" }}
+          startIcon={<AddBox />}
+        >
+          Create Crowdfunding
+        </Button>
+      </Link>
       <div>
         {crowdfundings.map((contractNo) => (
-          <ContractCard contractNo={contractNo} />
+          <ContractCard contractNo={contractNo} key={contractNo} />
         ))}
       </div>
     </Layout>

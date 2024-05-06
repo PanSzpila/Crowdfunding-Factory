@@ -5,7 +5,7 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
-const DarkModeToggle = () => {
+const DarkModeToggle: React.FC = () => {
   const [darkMode, setDarkMode] = useState(true);
 
   const theme = createTheme({

@@ -5,6 +5,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Link from "next/link";
 
 export default function ContractCard({ contractNo }: { contractNo: string }) {
   return (
@@ -15,7 +16,9 @@ export default function ContractCard({ contractNo }: { contractNo: string }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="medium">View crowdfunding</Button>
+        <Link href={`/crowdfundings/${contractNo}`}>
+          <Button size="medium">View crowdfunding</Button>
+        </Link>
       </CardActions>
     </Card>
   );

@@ -1,15 +1,17 @@
 import React, { useState, FormEvent } from "react";
-import Layout from "../../components/layout/Layout";
+import Layout from "../../../components/layout/Layout";
 import { TextField, InputAdornment, Box } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
-import factory from "../../ethereum/factory";
-import web3 from "../../ethereum/web3";
-import ErrorModal from "../../components/ErrorModal";
+import factory from "../../../ethereum/factory";
+import web3 from "../../../ethereum/web3";
+import ErrorModal from "../../../components/ErrorModal";
+import { useRouter } from "next/router";
 
 const CrowdfundingNew: React.FC = () => {
   const [minimumContribution, setMinimumContribution] = useState<string>("");
   const [errModalMsg, setErrModalMsg] = useState<string>("");
   const [loadingOnBtn, setLoadingOnBtn] = useState<boolean>(false);
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -28,8 +30,8 @@ const CrowdfundingNew: React.FC = () => {
         await factory?.methods.createCrowdfunding(minimumContribution).send({
           from: accounts[0],
         });
+        router.push("/");
       } else {
-        console.error("No accounts available");
         setErrModalMsg("No accounts available");
       }
     } catch (err: any) {
@@ -58,7 +60,6 @@ const CrowdfundingNew: React.FC = () => {
             <LoadingButton
               loading={loadingOnBtn}
               variant="contained"
-              endIcon={loadingOnBtn}
               type="submit"
             >
               Submit

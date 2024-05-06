@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { AddBox } from "@mui/icons-material";
+import Link from "next/link";
 // import DarkModeToggle from "./DarkModeToggle";
 
 export default function Header() {
@@ -14,19 +15,23 @@ export default function Header() {
       <AppBar position="static" style={{ marginBottom: "2rem" }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Crowdfunding Gecko
+            <Link href="/">Crowdfunding Gecko</Link>
           </Typography>
           {/* <DarkModeToggle /> */}
-          <Button color="inherit">Crowdfundings</Button>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ ml: 1 }}
-          >
-            <AddBox />
-          </IconButton>
+          <Button color="inherit">
+            <Link href="/">Crowdfundings</Link>
+          </Button>
+          <Link href="/crowdfundings/new">
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ ml: 1 }}
+            >
+              <AddBox />
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
