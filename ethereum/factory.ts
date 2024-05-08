@@ -7,7 +7,7 @@ let instance: Contract<any> | null = null;
 if (web3) {
   instance = new web3.eth.Contract(
     compiledFactory.abi,
-    "0xDDF1C55441acEf0a062BB3eF660674c12AcA4cfD"
+    process.env.NEXT_PUBLIC_DEPLOYED_CONTRACT_INSTANCE
   );
 }
 
