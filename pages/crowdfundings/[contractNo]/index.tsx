@@ -8,6 +8,7 @@ import web3 from "../../../ethereum/web3";
 import Link from "next/link";
 import { Button } from "@mui/material";
 import { Ballot } from "@mui/icons-material";
+import { useContractNo } from "../../../shared/sharedFunctions";
 
 const CrowdfundingShow: React.FC = () => {
   type Summary = {
@@ -21,22 +22,10 @@ const CrowdfundingShow: React.FC = () => {
   const router = useRouter();
   const [summary, setSummary] = useState<Summary | null>(null);
   const [refreshKey, setRefreshKey] = useState<number>(0);
-  const contractNo = useMemo(() => {
-    let contractNoFromPath = router.asPath.split("/").pop();
-    if (router.isReady && router.query.contractNo) {
-      contractNoFromPath = String(router.query.contractNo);
-    }
-    return contractNoFromPath;
-  }, [router.asPath, router.query.contractNo, router.isReady]);
+  const contractNo = useContractNo();
 
   if (typeof contractNo !== "string") {
     throw new Error("contractNo must be a string");
-  }
-
-  if (!(contractNo.length === 42)) {
-    throw new Error(
-      "contractNo is an blockchain address, so it should hafe 42 characters"
-    );
   }
 
   /*   useEffect(() => {
@@ -47,7 +36,7 @@ const CrowdfundingShow: React.FC = () => {
     if (
       contractNo &&
       typeof contractNo === "string" &&
-      contractNo.length === 42
+      contractNo.length == 42
     ) {
       const getInitialProps = async () => {
         const crowdfunding = Crowdfunding(contractNo);
@@ -100,8 +89,8 @@ const CrowdfundingShow: React.FC = () => {
             />
             <ContractDetailCard
               cardTitle="Crowdfunding Balance (ether)"
-              cardDescription="The balance is how much money this crowdfunding has left to spend"
-              cardValue={summary.balance}
+              cardDescription="The balance is how much money this crowdfunding has left to spend" // @ts-ignore
+              cardValue={web3?.utils.fromWei(summary.balance, "ether")}
             />
             <ContractDetailCard
               cardTitle="Number of Approovers"

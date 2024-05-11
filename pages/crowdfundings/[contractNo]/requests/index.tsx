@@ -11,25 +11,14 @@ import {
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { AddCard } from "@mui/icons-material";
+import { useContractNo } from "../../../../shared/sharedFunctions";
 
 const RequestsIndex = () => {
   const router = useRouter();
-  const contractNo = useMemo(() => {
-    let contractNoFromPath = router.asPath.split("/").pop();
-    if (router.isReady && router.query.contractNo) {
-      contractNoFromPath = String(router.query.contractNo);
-    }
-    return contractNoFromPath;
-  }, [router.asPath, router.query.contractNo, router.isReady]);
+  const contractNo = useContractNo();
 
   if (typeof contractNo !== "string") {
     throw new Error("contractNo must be a string");
-  }
-
-  if (!(contractNo.length === 42)) {
-    throw new Error(
-      "contractNo is an blockchain address, so it should hafe 42 characters"
-    );
   }
 
   return (
