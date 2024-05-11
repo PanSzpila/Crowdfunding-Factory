@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
-import Layout from "../../components/layout/Layout";
+import React, { useEffect, useState, useMemo } from "react";
+import Layout from "../../../components/layout/Layout";
 import { useRouter } from "next/router";
-import Crowdfunding from "../../ethereum/crowdfunding";
-import ContractDetailCard from "../../components/ContractDetailCard";
-import ContributeForm from "../../components/ContributeForm";
-import web3 from "../../ethereum/web3";
+import Crowdfunding from "../../../ethereum/crowdfunding";
+import ContractDetailCard from "../../../components/ContractDetailCard";
+import ContributeForm from "../../../components/ContributeForm";
+import web3 from "../../../ethereum/web3";
+import Link from "next/link";
+import { Button } from "@mui/material";
+import { Ballot } from "@mui/icons-material";
 
 const CrowdfundingShow: React.FC = () => {
   type Summary = {
@@ -16,26 +19,29 @@ const CrowdfundingShow: React.FC = () => {
   };
 
   const router = useRouter();
-  const contractNo2 = router.query.contractNo;
   const [summary, setSummary] = useState<Summary | null>(null);
   const [refreshKey, setRefreshKey] = useState<number>(0);
-  const contractNo = router.asPath.split("/").pop();
+  const contractNo = useMemo(() => {
+    let contractNoFromPath = router.asPath.split("/").pop();
+    if (router.isReady && router.query.contractNo) {
+      contractNoFromPath = String(router.query.contractNo);
+    }
+    return contractNoFromPath;
+  }, [router.asPath, router.query.contractNo, router.isReady]);
 
   if (typeof contractNo !== "string") {
     throw new Error("contractNo must be a string");
   }
 
-  useEffect(() => {
-    console.log("equal=", contractNo === contractNo2, contractNo, contractNo2);
-  });
+  if (!(contractNo.length === 42)) {
+    throw new Error(
+      "contractNo is an blockchain address, so it should hafe 42 characters"
+    );
+  }
 
-  useEffect(() => {
-    if (typeof contractNo !== "string") {
-      console.warn(
-        "type of contract number should be a string to display it properly on the screen"
-      );
-    }
-  }, []);
+  /*   useEffect(() => {
+    console.log("equal=", contractNo === contractNo2, contractNo, contractNo2);
+  }); */
 
   useEffect(() => {
     if (
@@ -114,6 +120,15 @@ const CrowdfundingShow: React.FC = () => {
             setRefreshKey={setRefreshKey}
             minimumContribution={summary.minimumContribution}
           />
+          <Link href={`/crowdfundings/${contractNo}/requests`}>
+            <Button
+              variant="contained"
+              style={{ float: "right", marginLeft: "2rem" }}
+              startIcon={<Ballot />}
+            >
+              Show spends requests
+            </Button>
+          </Link>
         </div>
       )}
     </Layout>

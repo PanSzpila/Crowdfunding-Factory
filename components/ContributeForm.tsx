@@ -47,7 +47,7 @@ const ContributeForm = ({
         router.replace(`/crowdfundings/${contractNo}`);
       } else {
         setErrModalMsg(
-          "No accounts available. Maybe there is no connection with your MetaMask Wallet?"
+          "No accounts available. Maybe there is no connection with your MetaMask Wallet."
         );
       }
     } catch (err: any) {

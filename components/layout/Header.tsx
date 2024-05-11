@@ -1,10 +1,12 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
+import {
+  AppBar,
+  Typography,
+  Button,
+  IconButton,
+  Toolbar,
+  Box,
+} from "@mui/material";
 import { AddBox } from "@mui/icons-material";
 import Link from "next/link";
 // import DarkModeToggle from "./DarkModeToggle";
