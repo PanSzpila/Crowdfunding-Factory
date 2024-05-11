@@ -1,36 +1,50 @@
-import React, { useState, FormEvent } from "react";
-import Layout from "../../../components/layout/Layout";
+import React, { useState, FormEvent, useEffect } from "react";
 import { TextField, InputAdornment, Box } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
-import factory from "../../../ethereum/factory";
-import web3 from "../../../ethereum/web3";
-import ErrorModal from "../../../components/ErrorModal";
+import Crowdfunding from "../ethereum/crowdfunding";
+import web3 from "../ethereum/web3";
 import { useRouter } from "next/router";
+import ErrorModal from "./ErrorModal";
 
-const CrowdfundingNew: React.FC = () => {
-  const [minimumContribution, setMinimumContribution] = useState<string>("");
-  const [errModalMsg, setErrModalMsg] = useState<string>("");
+interface IContributeFormProps {
+  contractNo: string;
+  minimumContribution: bigint;
+  refreshKey: number;
+  setRefreshKey: (value: ((prevState: number) => number) | number) => void;
+}
+
+const ContributeForm = ({
+  contractNo,
+  refreshKey,
+  setRefreshKey,
+}: IContributeFormProps) => {
   const [loadingOnBtn, setLoadingOnBtn] = useState<boolean>(false);
+  const [contribution, setContribution] = useState<string>("");
+  const [errModalMsg, setErrModalMsg] = useState<string>("");
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     // Sprawdź, czy wartość jest liczbą lub pustym ciągiem znaków
     if (!isNaN(Number(value)) || value === "") {
-      setMinimumContribution(value);
+      //TODO: to i jeszcze dodatkowo sprawdzenie czy vaule <= minimumContribution
+      setContribution(value);
     }
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoadingOnBtn(true);
+    const crowdfunding = Crowdfunding(contractNo);
     try {
       const accounts: string[] | undefined = await web3?.eth.getAccounts();
       if (accounts && accounts.length > 0) {
-        await factory?.methods.createCrowdfunding(minimumContribution).send({
-          from: accounts[0],
+        await crowdfunding?.methods.contribute().send({
+          from: String(accounts[0]),
+          value: web3?.utils.toWei(contribution, "ether"),
         });
-        router.push("/");
+        setRefreshKey((prevKey) => prevKey + 1);
+        router.replace(`/crowdfundings/${contractNo}`);
       } else {
         setErrModalMsg(
           "No accounts available. Maybe there is no connection with your MetaMask Wallet?"
@@ -39,23 +53,24 @@ const CrowdfundingNew: React.FC = () => {
     } catch (err: any) {
       setErrModalMsg(err.message);
     }
-    console.log(`Submitted minimum contribution: ${minimumContribution}`);
+    console.log(`Submitted with contribution: ${contribution}`);
     setLoadingOnBtn(false);
   };
 
   return (
-    <Layout>
-      <h3>New crowdfunding campaign</h3>
+    <div>
       <form onSubmit={handleSubmit}>
         <Box display="flex" flexDirection="column" alignItems="flex-start">
           <TextField
-            label="minimum contribution"
-            id="minimum-contribution"
+            label="amount to contribute"
+            id="amount to contribute"
             sx={{ m: 1, width: "25ch" }}
             InputProps={{
-              endAdornment: <InputAdornment position="end">wei</InputAdornment>,
+              endAdornment: (
+                <InputAdornment position="end">eth</InputAdornment>
+              ) /* TODO: switch between eth and wei */,
             }}
-            value={minimumContribution}
+            value={contribution}
             onChange={handleChange}
           />
           <Box alignSelf="flex-end">
@@ -64,13 +79,14 @@ const CrowdfundingNew: React.FC = () => {
               variant="contained"
               type="submit"
             >
-              Submit
+              Contribute!
             </LoadingButton>
           </Box>
         </Box>
       </form>
       <ErrorModal msg={errModalMsg} handleClose={() => setErrModalMsg("")} />
-    </Layout>
+    </div>
   );
 };
-export default CrowdfundingNew;
+
+export default ContributeForm;
