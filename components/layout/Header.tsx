@@ -10,6 +10,7 @@ import {
 import { AddBox } from "@mui/icons-material";
 import Link from "next/link";
 // import DarkModeToggle from "./DarkModeToggle";
+import DarkModeSwitch from "./DarkModeSwitch";
 
 export default function Header() {
   return (
@@ -19,6 +20,7 @@ export default function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link href="/">Crowdfunding Gecko</Link>
           </Typography>
+          <DarkModeSwitch />
           {/* <DarkModeToggle /> */}
           <Button color="inherit">
             <Link href="/">Crowdfundings</Link>

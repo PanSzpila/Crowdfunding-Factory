@@ -32,7 +32,7 @@ const RequestNew = () => {
     const crowdfunding = Crowdfunding(contractNo);
     try {
       const accounts: string[] | undefined = await web3?.eth.getAccounts();
-      if (accounts && accounts.length > 0) {
+      if (accounts?.length) {
         await crowdfunding?.methods
           .createRequest(
             description,
@@ -58,18 +58,13 @@ const RequestNew = () => {
       <Link href={`/crowdfundings/${contractNo}/requests`}>
         <Button size="medium">Back</Button>
       </Link>
-      <h3>NCreate a Request</h3>
+      <h3>Create a Request</h3>
       <form onSubmit={handleSubmit}>
         <Box display="flex" flexDirection="column" alignItems="flex-start">
           <TextField
             label="Description"
             id="description"
             sx={{ m: 1, width: "25ch" }}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">Buy Cases</InputAdornment>
-              ),
-            }}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -87,9 +82,6 @@ const RequestNew = () => {
             label="Recipent"
             id="recipent"
             sx={{ m: 1, width: "25ch" }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">wei</InputAdornment>,
-            }}
             value={recipient}
             onChange={(e) => setRecipient(e.target.value)}
           />

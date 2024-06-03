@@ -38,7 +38,7 @@ const ContributeForm = ({
     const crowdfunding = Crowdfunding(contractNo);
     try {
       const accounts: string[] | undefined = await web3?.eth.getAccounts();
-      if (accounts && accounts.length > 0) {
+      if (accounts?.length) {
         await crowdfunding?.methods.contribute().send({
           from: String(accounts[0]),
           value: web3?.utils.toWei(contribution, "ether"),

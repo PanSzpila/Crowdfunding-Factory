@@ -26,7 +26,7 @@ const CrowdfundingNew: React.FC = () => {
     setLoadingOnBtn(true);
     try {
       const accounts: string[] | undefined = await web3?.eth.getAccounts();
-      if (accounts && accounts.length > 0) {
+      if (accounts?.length) {
         await factory?.methods.createCrowdfunding(minimumContribution).send({
           from: accounts[0],
         });

@@ -15,19 +15,22 @@ import Link from "next/link";
 import { AddCard } from "@mui/icons-material";
 import { useContractNo } from "../../../../shared/sharedFunctions";
 import Crowdfunding from "../../../../ethereum/crowdfunding";
-import web3 from "../../../../ethereum/web3";
+import RequestRow from "./RequestRow";
 
 interface Request {
   description: string;
   value: string;
   recipient: string;
+  complete: boolean;
   approvalCount: string;
 }
 
 const RequestsIndex: React.FC = () => {
   const router = useRouter();
   const contractNo = useContractNo();
-  const [reqs, setReqs] = useState<Request[]>([]);
+  const [requests, setRequests] = useState<Request[]>([]);
+  const [approversCount, setApproversCount] = useState<number | null>(null);
+  const [requestCount, setrequestCount] = useState<Number>(0);
 
   useEffect(() => {
     if (
@@ -37,12 +40,16 @@ const RequestsIndex: React.FC = () => {
     ) {
       const getInitialProps = async () => {
         const crowdfunding = Crowdfunding(contractNo);
-        const requestCount: string = await crowdfunding.methods
+        const newRequestCount: string = await crowdfunding.methods
           .getRequestsCount()
           .call();
-        const requests: Request[] = (
+        const newApproversCount: bigint = await crowdfunding.methods
+          .approversCount()
+          .call();
+
+        const newRequests: Request[] = (
           await Promise.all(
-            Array(parseInt(requestCount))
+            Array(parseInt(newRequestCount))
               .fill(null)
               .map((element, index) => {
                 return crowdfunding.methods.requests(index).call();
@@ -52,32 +59,16 @@ const RequestsIndex: React.FC = () => {
           description: request.description,
           value: request.value,
           recipient: request.recipient,
+          complete: request.complete,
           approvalCount: request.approvalCount,
         })) as Request[];
-        // console.log("requests", requests, "requestCount", requestCount);
-        setReqs(requests);
+        setRequests(newRequests);
+        setrequestCount(Number(newRequestCount));
+        setApproversCount(Number(newApproversCount));
       };
       getInitialProps();
     }
   }, [contractNo]);
-
-  const tableCellsRenderer = () => {
-    return reqs.map((row, index) => (
-      <TableRow key={index + 1}>
-        <TableCell component="th" scope="row">
-          {index + 1} {/* ID */}
-        </TableCell>
-        <TableCell align="right">{row.description}</TableCell>
-        <TableCell align="right">
-          {web3?.utils.fromWei(row.value.toString(), "ether")}
-        </TableCell>
-        <TableCell align="right">{row.recipient}</TableCell>
-        <TableCell align="right">{Number(row.approvalCount)}</TableCell>
-        <TableCell align="right">{/* TODO: Approve btn */}</TableCell>
-        <TableCell align="right">{/* TODO: Finalize btn */}</TableCell>
-      </TableRow>
-    ));
-  };
 
   return (
     <div>
@@ -96,9 +87,20 @@ const RequestsIndex: React.FC = () => {
                 <TableCell align="right">Finalize</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>{tableCellsRenderer()}</TableBody>
+            <TableBody>
+              {requests.map((request, index) => (
+                <RequestRow
+                  key={index}
+                  id={index}
+                  request={request}
+                  approversCount={approversCount}
+                  contractNo={contractNo}
+                />
+              ))}
+            </TableBody>
           </Table>
         </TableContainer>
+        {!requestCount && <p>Found 0 requests</p>}
 
         <Link href={`/crowdfundings/${contractNo}/requests/new`}>
           <Button
