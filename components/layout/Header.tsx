@@ -8,6 +8,7 @@ import {
   Box,
 } from "@mui/material";
 import { AddBox } from "@mui/icons-material";
+import Image from "next/image";
 import Link from "next/link";
 // import DarkModeToggle from "./DarkModeToggle";
 import DarkModeSwitch from "./DarkModeSwitch";
@@ -18,14 +19,37 @@ export default function Header() {
       <AppBar position="static" style={{ marginBottom: "2rem" }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link href="/">Crowdfunding Gecko</Link>
+            <Link
+              href="/"
+              passHref
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                src="/media/cglogo.svg"
+                alt="Logo"
+                width={40}
+                height={40}
+                style={{ marginRight: "0.7rem" }}
+              />
+              Crowdfunding Gecko
+            </Link>
           </Typography>
           <DarkModeSwitch />
           {/* <DarkModeToggle /> */}
           <Button color="inherit">
-            <Link href="/">Crowdfundings</Link>
+            <Link style={{ textDecoration: "none", color: "inherit" }} href="/">
+              Crowdfundings
+            </Link>
           </Button>
-          <Link href="/crowdfundings/new">
+          <Link
+            style={{ textDecoration: "none", color: "inherit" }}
+            href="/crowdfundings/new"
+          >
             <IconButton
               size="large"
               edge="start"

@@ -9,7 +9,6 @@ address.txt
 target
 dist
 logs
-public
 .cache
 .DS_Store
 .idea

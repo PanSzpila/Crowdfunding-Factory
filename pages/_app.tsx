@@ -7,6 +7,7 @@ import "@fontsource/roboto/700.css";
 import { CssBaseline, ThemeProvider as MUIThemeProvider } from "@mui/material";
 import dynamic from "next/dynamic";
 import { useMyTheme } from "../theme";
+// import "../styles/main.scss";
 
 const DarkModeSwitch = dynamic(
   () => import("../components/layout/DarkModeSwitch"),
