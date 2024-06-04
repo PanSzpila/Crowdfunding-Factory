@@ -114,6 +114,7 @@ const CrowdfundingShow: React.FC = () => {
               variant="contained"
               style={{ float: "right", marginLeft: "2rem" }}
               startIcon={<Ballot />}
+              size="large"
             >
               Show spends requests
             </Button>

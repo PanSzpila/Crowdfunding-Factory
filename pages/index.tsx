@@ -23,20 +23,21 @@ const index: IndexComponent = ({
   return (
     <Layout>
       <h3> Open crowdfundings</h3>
-      <Link href="/crowdfundings/new">
-        <Button
-          variant="contained"
-          style={{ float: "right", marginLeft: "2rem" }}
-          startIcon={<AddBox />}
-        >
-          Create Crowdfunding
-        </Button>
-      </Link>
       <div>
         {crowdfundings.map((contractNo) => (
           <ContractCard contractNo={contractNo} key={contractNo} />
         ))}
       </div>
+      <Link href="/crowdfundings/new">
+        <Button
+          variant="contained"
+          style={{ float: "right", marginLeft: "2rem" }}
+          size="large"
+          startIcon={<AddBox />}
+        >
+          Create Crowdfunding
+        </Button>
+      </Link>
     </Layout>
   );
 };

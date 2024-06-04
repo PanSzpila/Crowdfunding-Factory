@@ -18,12 +18,12 @@ export default function ContractDetailCard({
   cardDescription,
 }: ContractDetailCardProps) {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth: 275, margin: "3rem 0" }}>
       <CardContent>
         <Typography sx={{ fontSize: 17 }} color="text.primary" gutterBottom>
           {cardTitle}
         </Typography>
-        <Typography variant="h5" component="div">
+        <Typography variant="h6" component="div">
           {String(cardValue)}
         </Typography>
         {/*         <Typography sx={{ mb: 1.5 }} color="text.secondary">

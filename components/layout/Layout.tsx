@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import Header from "./Header";
+import Footer from "./Footer";
 import { Container } from "@mui/system";
 import { useTheme } from "../../themeContext";
 
@@ -9,11 +10,15 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div>
+    <div
+      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+    >
       <Container maxWidth="xl">
         <Header />
-        <Container maxWidth="xl">{children}</Container>
-        <h1>here's footer</h1>
+        <Container maxWidth="xl" style={{ flex: 1, overflow: "auto" }}>
+          {children}
+        </Container>
+        <Footer />
       </Container>
     </div>
   );

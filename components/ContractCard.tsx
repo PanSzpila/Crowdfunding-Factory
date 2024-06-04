@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function ContractCard({ contractNo }: { contractNo: string }) {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth: 275, margin: "4rem 0" }}>
       <CardContent>
         <Typography variant="h6" component="div">
           {contractNo}

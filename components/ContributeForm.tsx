@@ -60,28 +60,25 @@ const ContributeForm = ({
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <Box display="flex" flexDirection="column" alignItems="flex-start">
+        <Box display="flex" flexDirection="row" alignItems="center" gap={2}>
           <TextField
             label="amount to contribute"
             id="amount to contribute"
             sx={{ m: 1, width: "25ch" }}
             InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">eth</InputAdornment>
-              ) /* TODO: switch between eth and wei */,
+              endAdornment: <InputAdornment position="end">eth</InputAdornment>,
             }}
             value={contribution}
             onChange={handleChange}
           />
-          <Box alignSelf="flex-end">
-            <LoadingButton
-              loading={loadingOnBtn}
-              variant="contained"
-              type="submit"
-            >
-              Contribute!
-            </LoadingButton>
-          </Box>
+          <LoadingButton
+            loading={loadingOnBtn}
+            variant="contained"
+            type="submit"
+            size="large"
+          >
+            Contribute!
+          </LoadingButton>
         </Box>
       </form>
       <ErrorModal msg={errModalMsg} handleClose={() => setErrModalMsg("")} />

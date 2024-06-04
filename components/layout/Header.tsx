@@ -34,7 +34,7 @@ export default function Header() {
                 alt="Logo"
                 width={40}
                 height={40}
-                style={{ marginRight: "0.7rem" }}
+                style={{ marginRight: "1rem" }}
               />
               Crowdfunding Gecko
             </Link>

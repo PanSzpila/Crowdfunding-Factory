@@ -105,8 +105,9 @@ const RequestsIndex: React.FC = () => {
         <Link href={`/crowdfundings/${contractNo}/requests/new`}>
           <Button
             variant="contained"
-            style={{ float: "right", marginLeft: "2rem" }}
+            style={{ float: "right", marginLeft: "2rem", marginTop: "2rem" }}
             startIcon={<AddCard />}
+            size="large"
           >
             Add Request
           </Button>
