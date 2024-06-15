@@ -73,7 +73,7 @@ const RequestsIndex: React.FC = () => {
   return (
     <div>
       <Layout>
-        <h3>Requests</h3>
+        <h1>Spend requests</h1>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>

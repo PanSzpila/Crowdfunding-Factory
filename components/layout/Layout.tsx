@@ -15,7 +15,10 @@ const Layout = ({ children }: LayoutProps) => {
     >
       <Container maxWidth="xl">
         <Header />
-        <Container maxWidth="xl" style={{ flex: 1, overflow: "auto" }}>
+        <Container
+          maxWidth="xl"
+          style={{ flex: 1, overflow: "auto", marginTop: "100px" }}
+        >
           {children}
         </Container>
         <Footer />

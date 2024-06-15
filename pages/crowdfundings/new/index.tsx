@@ -45,7 +45,7 @@ const CrowdfundingNew: React.FC = () => {
 
   return (
     <Layout>
-      <h3>New crowdfunding campaign</h3>
+      <h1>New crowdfunding campaign</h1>
       <form onSubmit={handleSubmit}>
         <Box display="flex" flexDirection="column" alignItems="flex-start">
           <TextField

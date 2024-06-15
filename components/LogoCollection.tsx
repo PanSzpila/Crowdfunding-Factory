@@ -51,6 +51,7 @@ export default function LogoCollection() {
         variant="subtitle2"
         align="center"
         color="text.secondary"
+        style={{ marginBottom: "32px" }}
       >
         Technologies used in this project
       </Typography>

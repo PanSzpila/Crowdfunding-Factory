@@ -2,6 +2,7 @@ import web3 from "../ethereum/web3";
 import factory from "../ethereum/factory";
 import ContractCard from "../components/ContractCard";
 import Layout from "../components/layout/Layout";
+import Readme from "../components/Readme";
 import { Button } from "@mui/material";
 import { AddBox } from "@mui/icons-material";
 import Link from "next/link";
@@ -22,8 +23,9 @@ const index: IndexComponent = ({
 }) => {
   return (
     <Layout>
+      <Readme />
       <LogoCollection />
-      <h3> Open crowdfundings</h3>
+      <h1> Open crowdfundings</h1>
       <div>
         {crowdfundings.map((contractNo) => (
           <ContractCard contractNo={contractNo} key={contractNo} />

@@ -60,7 +60,7 @@ const CrowdfundingShow: React.FC = () => {
 
   return (
     <Layout>
-      <div>CrowdfundingShow - details of the contract {contractNo}</div>
+      <h1>details of the contract {contractNo}</h1>
       {summary?.minimumContribution && (
         <div>
           <div>
