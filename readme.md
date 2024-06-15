@@ -28,7 +28,7 @@ At the bottom of the "Details of the Contract" page, there is a "Show spend Requ
 
 This page lists the expenses requested by the manager. Approvers can click "approve" in the table. If a given expense is approved by at least half of the approvers, then the manager can click "finalize" which will trigger a transfer to the Recipient wallet.
 
-## Technical informations
+## Technical information
 
 ### Blockchain
 
