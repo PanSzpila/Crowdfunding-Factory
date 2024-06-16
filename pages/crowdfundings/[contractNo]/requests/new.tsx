@@ -1,6 +1,12 @@
 import React, { useState, FormEvent, useMemo } from "react";
 import Layout from "../../../../components/layout/Layout";
-import { TextField, InputAdornment, Box, Button } from "@mui/material";
+import {
+  TextField,
+  InputAdornment,
+  Box,
+  Button,
+  Container,
+} from "@mui/material";
 import Link from "next/link";
 import LoadingButton from "@mui/lab/LoadingButton";
 import Crowdfunding from "../../../../ethereum/crowdfunding";
@@ -9,6 +15,12 @@ import ErrorModal from "../../../../components/ErrorModal";
 import { useRouter } from "next/router";
 import { useContractNo } from "../../../../shared/sharedFunctions";
 import Breadcrumb from "../../../../components/Breadcrumb";
+import {
+  upperBoxStyles,
+  upperContainerStyles,
+} from "../../../../styles/sharedStyles";
+import { Theme } from "@mui/material/styles";
+import { useTheme } from "@mui/system";
 
 const RequestNew = () => {
   const [errModalMsg, setErrModalMsg] = useState<string>("");
@@ -18,6 +30,7 @@ const RequestNew = () => {
   const [value, setValue] = useState<string>("");
   const router = useRouter();
   const contractNo = useContractNo();
+  const theme = useTheme() as Theme;
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -56,65 +69,74 @@ const RequestNew = () => {
   };
   return (
     <Layout>
-      <Breadcrumb
-        items={[
-          { text: "Home", href: "/" },
-          { text: "Crowdfundings", href: "/#crowdfundings" },
-          {
-            text: `Contract ${contractNo}`,
-            href: `/crowdfundings/${contractNo}`,
-          },
-          {
-            text: "Spend requests",
-            href: `/crowdfundings/${contractNo}/requests`,
-          },
-          {
-            text: "Create request",
-          },
-        ]}
-      />
-      <Link href={`/crowdfundings/${contractNo}/requests`}>
-        <Button size="medium">Back</Button>
-      </Link>
-      <h1>Create a Request</h1>
-      <form onSubmit={handleSubmit}>
-        <Box display="flex" flexDirection="column" alignItems="flex-start">
-          <TextField
-            label="Description"
-            id="description"
-            sx={{ m: 1, width: "25ch" }}
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+      <Box sx={upperBoxStyles(theme)}>
+        <Container maxWidth="xl" sx={upperContainerStyles}>
+          <Breadcrumb
+            items={[
+              { text: "Home", href: "/" },
+              { text: "Crowdfundings", href: "/#crowdfundings" },
+              {
+                text: `Contract ${contractNo}`,
+                href: `/crowdfundings/${contractNo}`,
+              },
+              {
+                text: "Spend requests",
+                href: `/crowdfundings/${contractNo}/requests`,
+              },
+              {
+                text: "Create request",
+              },
+            ]}
           />
-          <TextField
-            label="Amount in ether"
-            id="amount-in-ether"
-            sx={{ m: 1, width: "25ch" }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">eth</InputAdornment>,
-            }}
-            value={value}
-            onChange={handleValueChange}
-          />
-          <TextField
-            label="Recipent"
-            id="recipent"
-            sx={{ m: 1, width: "25ch" }}
-            value={recipient}
-            onChange={(e) => setRecipient(e.target.value)}
-          />
-          <Box alignSelf="flex-end">
-            <LoadingButton
-              loading={loadingOnBtn}
-              variant="contained"
-              type="submit"
-            >
-              Create
-            </LoadingButton>
-          </Box>
-        </Box>
-      </form>
-      <ErrorModal msg={errModalMsg} handleClose={() => setErrModalMsg("")} />
+          <Link href={`/crowdfundings/${contractNo}/requests`}>
+            <Button size="medium">Back</Button>
+          </Link>
+          <h1>Create a Request</h1>
+          <form onSubmit={handleSubmit}>
+            <Box display="flex" flexDirection="column" alignItems="flex-start">
+              <TextField
+                label="Description"
+                id="description"
+                sx={{ m: 1, width: "25ch" }}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+              <TextField
+                label="Amount in ether"
+                id="amount-in-ether"
+                sx={{ m: 1, width: "25ch" }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">eth</InputAdornment>
+                  ),
+                }}
+                value={value}
+                onChange={handleValueChange}
+              />
+              <TextField
+                label="Recipent"
+                id="recipent"
+                sx={{ m: 1, width: "25ch" }}
+                value={recipient}
+                onChange={(e) => setRecipient(e.target.value)}
+              />
+              <Box alignSelf="flex-end">
+                <LoadingButton
+                  loading={loadingOnBtn}
+                  variant="contained"
+                  type="submit"
+                >
+                  Create
+                </LoadingButton>
+              </Box>
+            </Box>
+          </form>
+          <ErrorModal
+            msg={errModalMsg}
+            handleClose={() => setErrModalMsg("")}
+          />{" "}
+        </Container>
+      </Box>
     </Layout>
   );
 };

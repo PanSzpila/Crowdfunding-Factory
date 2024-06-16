@@ -10,6 +10,13 @@ import { Button } from "@mui/material";
 import { Ballot } from "@mui/icons-material";
 import { useContractNo } from "../../../shared/sharedFunctions";
 import Breadcrumb from "../../../components/Breadcrumb";
+import { Box, Container } from "@mui/material";
+import {
+  upperBoxStyles,
+  upperContainerStyles,
+} from "../../../styles/sharedStyles";
+import { Theme } from "@mui/material/styles";
+import { useTheme } from "@mui/system";
 
 const CrowdfundingShow: React.FC = () => {
   type Summary = {
@@ -24,6 +31,7 @@ const CrowdfundingShow: React.FC = () => {
   const [summary, setSummary] = useState<Summary | null>(null);
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const contractNo = useContractNo();
+  const theme = useTheme() as Theme;
 
   if (typeof contractNo !== "string") {
     throw new Error("contractNo must be a string");
@@ -61,76 +69,80 @@ const CrowdfundingShow: React.FC = () => {
 
   return (
     <Layout>
-      <Breadcrumb
-        items={[
-          { text: "Home", href: "/" },
-          { text: "Crowdfundings", href: "/#crowdfundings" },
-          {
-            text: `Contract ${contractNo}`,
-          },
-        ]}
-      />
-      <h1>etails of the contract {contractNo}</h1>
-      {summary?.minimumContribution && (
-        <div>
-          <div>
-            <ContractDetailCard
-              cardTitle="Contract Address"
-              cardDescription="its the blockchain addres of the contract"
-              cardValue={typeof contractNo === "string" ? contractNo : ""}
-            />
-            <ContractDetailCard
-              cardTitle="Addres of Manager"
-              cardDescription="The manager created this campaign and can create requests to withdraw money"
-              cardValue={summary.manager}
-            />
-            <ContractDetailCard
-              cardTitle="Minimum Contribution (eth)"
-              cardDescription="You must contribute at least this much wei to become an approver" // @ts-ignore
-              cardValue={web3?.utils.fromWei(
-                summary.minimumContribution,
-                "ether"
-              )}
-            />
-            <ContractDetailCard
-              cardTitle="Minimum Contribution (wei)"
-              cardDescription="You must contribute at least this much wei to become an approver"
-              cardValue={summary.minimumContribution}
-            />
-            <ContractDetailCard
-              cardTitle="Crowdfunding Balance (ether)"
-              cardDescription="The balance is how much money this crowdfunding has left to spend" // @ts-ignore
-              cardValue={web3?.utils.fromWei(summary.balance, "ether")}
-            />
-            <ContractDetailCard
-              cardTitle="Number of Approovers"
-              cardDescription="Number of people who have already donated to this campaign"
-              cardValue={summary.approversCount}
-            />
-            <ContractDetailCard
-              cardTitle="Number of Requests"
-              cardDescription="A request tries to withdraw money from the contract. Requests must be approoves by approovers"
-              cardValue={summary.requestsCount}
-            />
-          </div>
-          <ContributeForm
-            contractNo={contractNo}
-            refreshKey={refreshKey}
-            setRefreshKey={setRefreshKey}
-            minimumContribution={summary.minimumContribution}
+      <Box sx={upperBoxStyles(theme)}>
+        <Container maxWidth="xl" sx={upperContainerStyles}>
+          <Breadcrumb
+            items={[
+              { text: "Home", href: "/" },
+              { text: "Crowdfundings", href: "/#crowdfundings" },
+              {
+                text: `Contract ${contractNo}`,
+              },
+            ]}
           />
-          <Link href={`/crowdfundings/${contractNo}/requests`}>
-            <Button
-              variant="contained"
-              style={{ float: "right", marginLeft: "2rem" }}
-              startIcon={<Ballot />}
-              size="large"
-            >
-              Show spends requests
-            </Button>
-          </Link>
-        </div>
-      )}
+          <h1>Details of the contract {contractNo}</h1>
+          {summary?.minimumContribution && (
+            <div>
+              <div>
+                <ContractDetailCard
+                  cardTitle="Contract Address"
+                  cardDescription="its the blockchain addres of the contract"
+                  cardValue={typeof contractNo === "string" ? contractNo : ""}
+                />
+                <ContractDetailCard
+                  cardTitle="Addres of Manager"
+                  cardDescription="The manager created this campaign and can create requests to withdraw money"
+                  cardValue={summary.manager}
+                />
+                <ContractDetailCard
+                  cardTitle="Minimum Contribution (eth)"
+                  cardDescription="You must contribute at least this much wei to become an approver" // @ts-ignore
+                  cardValue={web3?.utils.fromWei(
+                    summary.minimumContribution,
+                    "ether"
+                  )}
+                />
+                <ContractDetailCard
+                  cardTitle="Minimum Contribution (wei)"
+                  cardDescription="You must contribute at least this much wei to become an approver"
+                  cardValue={summary.minimumContribution}
+                />
+                <ContractDetailCard
+                  cardTitle="Crowdfunding Balance (ether)"
+                  cardDescription="The balance is how much money this crowdfunding has left to spend" // @ts-ignore
+                  cardValue={web3?.utils.fromWei(summary.balance, "ether")}
+                />
+                <ContractDetailCard
+                  cardTitle="Number of Approovers"
+                  cardDescription="Number of people who have already donated to this campaign"
+                  cardValue={summary.approversCount}
+                />
+                <ContractDetailCard
+                  cardTitle="Number of Requests"
+                  cardDescription="A request tries to withdraw money from the contract. Requests must be approoves by approovers"
+                  cardValue={summary.requestsCount}
+                />
+              </div>
+              <ContributeForm
+                contractNo={contractNo}
+                refreshKey={refreshKey}
+                setRefreshKey={setRefreshKey}
+                minimumContribution={summary.minimumContribution}
+              />
+              <Link href={`/crowdfundings/${contractNo}/requests`}>
+                <Button
+                  variant="contained"
+                  style={{ float: "right", marginLeft: "2rem" }}
+                  startIcon={<Ballot />}
+                  size="large"
+                >
+                  Show spends requests
+                </Button>
+              </Link>
+            </div>
+          )}
+        </Container>
+      </Box>
     </Layout>
   );
 };

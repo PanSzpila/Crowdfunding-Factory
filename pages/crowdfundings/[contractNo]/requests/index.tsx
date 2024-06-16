@@ -17,6 +17,13 @@ import { useContractNo } from "../../../../shared/sharedFunctions";
 import Crowdfunding from "../../../../ethereum/crowdfunding";
 import RequestRow from "./RequestRow";
 import Breadcrumb from "../../../../components/Breadcrumb";
+import { Box, Container } from "@mui/material";
+import {
+  upperBoxStyles,
+  upperContainerStyles,
+} from "../../../../styles/sharedStyles";
+import { Theme } from "@mui/material/styles";
+import { useTheme } from "@mui/system";
 
 interface Request {
   description: string;
@@ -32,6 +39,7 @@ const RequestsIndex: React.FC = () => {
   const [requests, setRequests] = useState<Request[]>([]);
   const [approversCount, setApproversCount] = useState<number | null>(null);
   const [requestCount, setrequestCount] = useState<Number>(0);
+  const theme = useTheme() as Theme;
 
   useEffect(() => {
     if (
@@ -74,57 +82,65 @@ const RequestsIndex: React.FC = () => {
   return (
     <div>
       <Layout>
-        <Breadcrumb
-          items={[
-            { text: "Home", href: "/" },
-            { text: "Crowdfundings", href: "/#crowdfundings" },
-            {
-              text: `Contract ${contractNo}`,
-              href: `/crowdfundings/${contractNo}`,
-            },
-            { text: "Spend requests" },
-          ]}
-        />
+        <Box sx={upperBoxStyles(theme)}>
+          <Container maxWidth="xl" sx={upperContainerStyles}>
+            <Breadcrumb
+              items={[
+                { text: "Home", href: "/" },
+                { text: "Crowdfundings", href: "/#crowdfundings" },
+                {
+                  text: `Contract ${contractNo}`,
+                  href: `/crowdfundings/${contractNo}`,
+                },
+                { text: "Spend requests" },
+              ]}
+            />
 
-        <h1>Spend requests</h1>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell align="right">Description</TableCell>
-                <TableCell align="right">Amount</TableCell>
-                <TableCell align="right">Recipient</TableCell>
-                <TableCell align="right">Approval Count</TableCell>
-                <TableCell align="right">Approve</TableCell>
-                <TableCell align="right">Finalize</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {requests.map((request, index) => (
-                <RequestRow
-                  key={index}
-                  id={index}
-                  request={request}
-                  approversCount={approversCount}
-                  contractNo={contractNo}
-                />
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        {!requestCount && <p>Found 0 requests</p>}
+            <h1>Spend requests</h1>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>ID</TableCell>
+                    <TableCell align="right">Description</TableCell>
+                    <TableCell align="right">Amount</TableCell>
+                    <TableCell align="right">Recipient</TableCell>
+                    <TableCell align="right">Approval Count</TableCell>
+                    <TableCell align="right">Approve</TableCell>
+                    <TableCell align="right">Finalize</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {requests.map((request, index) => (
+                    <RequestRow
+                      key={index}
+                      id={index}
+                      request={request}
+                      approversCount={approversCount}
+                      contractNo={contractNo}
+                    />
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            {!requestCount && <p>Found 0 requests</p>}
 
-        <Link href={`/crowdfundings/${contractNo}/requests/new`}>
-          <Button
-            variant="contained"
-            style={{ float: "right", marginLeft: "2rem", marginTop: "2rem" }}
-            startIcon={<AddCard />}
-            size="large"
-          >
-            Add Request
-          </Button>
-        </Link>
+            <Link href={`/crowdfundings/${contractNo}/requests/new`}>
+              <Button
+                variant="contained"
+                style={{
+                  float: "right",
+                  marginLeft: "2rem",
+                  marginTop: "2rem",
+                }}
+                startIcon={<AddCard />}
+                size="large"
+              >
+                Add Request
+              </Button>
+            </Link>
+          </Container>
+        </Box>
       </Layout>
     </div>
   );

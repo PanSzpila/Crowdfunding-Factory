@@ -7,12 +7,20 @@ import web3 from "../../../ethereum/web3";
 import ErrorModal from "../../../components/ErrorModal";
 import { useRouter } from "next/router";
 import Breadcrumb from "../../../components/Breadcrumb";
+import { Container } from "@mui/system";
+import {
+  upperBoxStyles,
+  upperContainerStyles,
+} from "../../../styles/sharedStyles";
+import { Theme } from "@mui/material/styles";
+import { useTheme } from "@mui/system";
 
 const CrowdfundingNew: React.FC = () => {
   const [minimumContribution, setMinimumContribution] = useState<string>("");
   const [errModalMsg, setErrModalMsg] = useState<string>("");
   const [loadingOnBtn, setLoadingOnBtn] = useState<boolean>(false);
   const router = useRouter();
+  const theme = useTheme() as Theme;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -46,40 +54,49 @@ const CrowdfundingNew: React.FC = () => {
 
   return (
     <Layout>
-      <Breadcrumb
-        items={[
-          { text: "Home", href: "/" },
-          { text: "Crowdfundings", href: "/#crowdfundings" },
-          {
-            text: "New contract",
-          },
-        ]}
-      />
-      <h1>New crowdfunding campaign</h1>
-      <form onSubmit={handleSubmit}>
-        <Box display="flex" flexDirection="column" alignItems="flex-start">
-          <TextField
-            label="minimum contribution"
-            id="minimum-contribution"
-            sx={{ m: 1, width: "25ch" }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">wei</InputAdornment>,
-            }}
-            value={minimumContribution}
-            onChange={handleChange}
+      <Box sx={upperBoxStyles(theme)}>
+        <Container maxWidth="xl" sx={upperContainerStyles}>
+          <Breadcrumb
+            items={[
+              { text: "Home", href: "/" },
+              { text: "Crowdfundings", href: "/#crowdfundings" },
+              {
+                text: "New contract",
+              },
+            ]}
           />
-          <Box alignSelf="flex-end">
-            <LoadingButton
-              loading={loadingOnBtn}
-              variant="contained"
-              type="submit"
-            >
-              Submit
-            </LoadingButton>
-          </Box>
-        </Box>
-      </form>
-      <ErrorModal msg={errModalMsg} handleClose={() => setErrModalMsg("")} />
+          <h1>New crowdfunding campaign</h1>
+          <form onSubmit={handleSubmit}>
+            <Box display="flex" flexDirection="column" alignItems="flex-start">
+              <TextField
+                label="minimum contribution"
+                id="minimum-contribution"
+                sx={{ m: 1, width: "25ch" }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">wei</InputAdornment>
+                  ),
+                }}
+                value={minimumContribution}
+                onChange={handleChange}
+              />
+              <Box alignSelf="flex-end">
+                <LoadingButton
+                  loading={loadingOnBtn}
+                  variant="contained"
+                  type="submit"
+                >
+                  Submit
+                </LoadingButton>
+              </Box>
+            </Box>
+          </form>
+          <ErrorModal
+            msg={errModalMsg}
+            handleClose={() => setErrModalMsg("")}
+          />
+        </Container>
+      </Box>
     </Layout>
   );
 };

@@ -1,5 +1,3 @@
-import Box from "@mui/material/Box";
-
 const Readme = () => (
   <div>
     <h2>Welcome to my project page</h2>
@@ -83,45 +81,6 @@ const Readme = () => (
       the approvers, then the manager can click "finalize" which will trigger a
       transfer to the Recipient wallet.
     </p>
-    <Box
-      id="highlights"
-      sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
-        color: "white",
-        bgcolor: "#06090a",
-      }}
-    >
-      <h2>Technical information</h2>
-
-      <h4>Blockchain</h4>
-      <p>
-        A smart contract named “CrowdfundingFactory” has been written in
-        Solidity. This contract creates child contracts named “Crowdfunding”,
-        each responsible for individual collections. The application is
-        connected to the ethereum network using Web3.js and the Metamask wallet
-        using Truffle. Tests performed in Ganache.
-      </p>
-
-      <h4>FrontEnd</h4>
-      <p>Application made in Next.js with TypeScript, MaterialUi.</p>
-
-      <h4>Inspiration</h4>
-      <p>
-        The inspiration for the project was the Udemy course "Ethereum and
-        Solidity: The Complete Developer's Guide" by Stephen Grider, BUT! the
-        course is quite outdated, a lot has changed in the code over the last
-        two years and I used the latest stable versions of all tools, directly.
-        Solidity now has a different syntax in many places, libraries have
-        different methods, Next.js has a different architecture, I also added
-        Typescript, used Material UI instead of Semantic UI, named variables
-        differently and slightly changed the project architecture in some
-        places. Plus, the app pages have my add-ons. All this to force me to
-        thoroughly understand the code at every stage of the project.
-      </p>
-    </Box>
-
-    <p>Piotr Podgórski, 2024</p>
   </div>
 );
 
