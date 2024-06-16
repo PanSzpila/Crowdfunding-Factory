@@ -17,7 +17,7 @@ const index: React.FC = () => {
   const theme = useTheme() as Theme;
   return (
     <Layout>
-      <Box sx={{ pb: { xs: 2, sm: 4 }, ...upperBoxStyles(theme) }}>
+      <Box sx={{ pb: { xs: 4, sm: 8 }, ...upperBoxStyles(theme) }}>
         <Container maxWidth="xl" sx={upperContainerStyles}>
           <Breadcrumb items={[{ text: "Home" }]} />
           <Readme />
@@ -25,10 +25,13 @@ const index: React.FC = () => {
       </Box>
       <Box
         sx={{
-          pt: { xs: 1, sm: 3 },
-          pb: { xs: 2, sm: 4 },
+          pt: { xs: 2, sm: 6 },
+          pb: { xs: 4, sm: 8 },
           color: "white",
           bgcolor: "#06090a",
+          borderTop: "1px solid",
+          borderBottom: "1px solid",
+          borderColor: "grey.900",
         }}
       >
         <Container maxWidth="xl">
@@ -38,7 +41,7 @@ const index: React.FC = () => {
       <Box
         id="crowdfundings"
         sx={{
-          pt: { xs: 1, sm: 3 },
+          pt: { xs: 2, sm: 6 },
         }}
       >
         <Container maxWidth="xl">

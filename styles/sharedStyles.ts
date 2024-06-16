@@ -16,5 +16,13 @@ export const upperBoxStyles = (theme: Theme): SystemStyleObject => ({
 export const upperContainerStyles = (): SystemStyleObject => ({
   flex: 1,
   overflow: "auto",
-  marginTop: "100px",
+  pt: { xs: 7, sm: 14 },
+});
+
+export const CardStyles = (theme: Theme): SystemStyleObject => ({
+  minWidth: 275,
+  border: "1px solid",
+  borderColor: theme.palette.mode === "light" ? "grey.400" : "grey.900",
+  borderRadius: "10px",
+  boxShadow: "none",
 });
