@@ -1,3 +1,5 @@
+import Box from "@mui/material/Box";
+
 const Readme = () => (
   <div>
     <h2>Welcome to my project page</h2>
@@ -33,7 +35,7 @@ const Readme = () => (
       on the Ethereum network.
     </p>
 
-    <h2>The key improvement over traditional crowdfunding campaigns</h2>
+    <h4>The key improvement over traditional crowdfunding campaigns</h4>
     <p>
       Among the many startups worldwide seeking financing, there are numerous
       scams and pretend ventures that in fact extort donors’ capital. Modern
@@ -49,7 +51,7 @@ const Readme = () => (
 
     <h2>User manual divided into app screens</h2>
 
-    <h3>Home page</h3>
+    <h4>Home page</h4>
     <p>
       Below is a list of crowdfundings. These are individual accounts for each
       startup. Of course, they could be connected to external websites along
@@ -59,7 +61,7 @@ const Readme = () => (
       appears on a new screen.
     </p>
 
-    <h3>"Details of the Contract" page</h3>
+    <h4>"Details of the Contract" page</h4>
     <p>
       Here you will find details of the selected crowdfunding. You can also
       donate your funds by entering the amount to be transferred and clicking
@@ -74,41 +76,50 @@ const Readme = () => (
       button.
     </p>
 
-    <h3>"Requests" page</h3>
+    <h4>"Requests" page</h4>
     <p>
       This page lists the expenses requested by the manager. Approvers can click
       "approve" in the table. If a given expense is approved by at least half of
       the approvers, then the manager can click "finalize" which will trigger a
       transfer to the Recipient wallet.
     </p>
+    <Box
+      id="highlights"
+      sx={{
+        pt: { xs: 4, sm: 12 },
+        pb: { xs: 8, sm: 16 },
+        color: "white",
+        bgcolor: "#06090a",
+      }}
+    >
+      <h2>Technical information</h2>
 
-    <h2>Technical information</h2>
+      <h4>Blockchain</h4>
+      <p>
+        A smart contract named “CrowdfundingFactory” has been written in
+        Solidity. This contract creates child contracts named “Crowdfunding”,
+        each responsible for individual collections. The application is
+        connected to the ethereum network using Web3.js and the Metamask wallet
+        using Truffle. Tests performed in Ganache.
+      </p>
 
-    <h3>Blockchain</h3>
-    <p>
-      A smart contract named “CrowdfundingFactory” has been written in Solidity.
-      This contract creates child contracts named “Crowdfunding”, each
-      responsible for individual collections. The application is connected to
-      the ethereum network using Web3.js and the Metamask wallet using Truffle.
-      Tests performed in Ganache.
-    </p>
+      <h4>FrontEnd</h4>
+      <p>Application made in Next.js with TypeScript, MaterialUi.</p>
 
-    <h3>FrontEnd</h3>
-    <p>Application made in Next.js with TypeScript, MaterialUi.</p>
-
-    <h3>Inspiration</h3>
-    <p>
-      The inspiration for the project was the Udemy course "Ethereum and
-      Solidity: The Complete Developer's Guide" by Stephen Grider, BUT! the
-      course is quite outdated, a lot has changed in the code over the last two
-      years and I used the latest stable versions of all tools, directly.
-      Solidity now has a different syntax in many places, libraries have
-      different methods, Next.js has a different architecture, I also added
-      Typescript, used Material UI instead of Semantic UI, named variables
-      differently and slightly changed the project architecture in some places.
-      Plus, the app pages have my add-ons. All this to force me to thoroughly
-      understand the code at every stage of the project.
-    </p>
+      <h4>Inspiration</h4>
+      <p>
+        The inspiration for the project was the Udemy course "Ethereum and
+        Solidity: The Complete Developer's Guide" by Stephen Grider, BUT! the
+        course is quite outdated, a lot has changed in the code over the last
+        two years and I used the latest stable versions of all tools, directly.
+        Solidity now has a different syntax in many places, libraries have
+        different methods, Next.js has a different architecture, I also added
+        Typescript, used Material UI instead of Semantic UI, named variables
+        differently and slightly changed the project architecture in some
+        places. Plus, the app pages have my add-ons. All this to force me to
+        thoroughly understand the code at every stage of the project.
+      </p>
+    </Box>
 
     <p>Piotr Podgórski, 2024</p>
   </div>

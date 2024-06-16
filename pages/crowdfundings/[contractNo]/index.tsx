@@ -9,6 +9,7 @@ import Link from "next/link";
 import { Button } from "@mui/material";
 import { Ballot } from "@mui/icons-material";
 import { useContractNo } from "../../../shared/sharedFunctions";
+import Breadcrumb from "../../../components/Breadcrumb";
 
 const CrowdfundingShow: React.FC = () => {
   type Summary = {
@@ -60,7 +61,16 @@ const CrowdfundingShow: React.FC = () => {
 
   return (
     <Layout>
-      <h1>details of the contract {contractNo}</h1>
+      <Breadcrumb
+        items={[
+          { text: "Home", href: "/" },
+          { text: "Crowdfundings", href: "/#crowdfundings" },
+          {
+            text: `Contract ${contractNo}`,
+          },
+        ]}
+      />
+      <h1>etails of the contract {contractNo}</h1>
       {summary?.minimumContribution && (
         <div>
           <div>

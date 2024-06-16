@@ -6,6 +6,7 @@ import factory from "../../../ethereum/factory";
 import web3 from "../../../ethereum/web3";
 import ErrorModal from "../../../components/ErrorModal";
 import { useRouter } from "next/router";
+import Breadcrumb from "../../../components/Breadcrumb";
 
 const CrowdfundingNew: React.FC = () => {
   const [minimumContribution, setMinimumContribution] = useState<string>("");
@@ -45,6 +46,15 @@ const CrowdfundingNew: React.FC = () => {
 
   return (
     <Layout>
+      <Breadcrumb
+        items={[
+          { text: "Home", href: "/" },
+          { text: "Crowdfundings", href: "/#crowdfundings" },
+          {
+            text: "New contract",
+          },
+        ]}
+      />
       <h1>New crowdfunding campaign</h1>
       <form onSubmit={handleSubmit}>
         <Box display="flex" flexDirection="column" alignItems="flex-start">

@@ -4,6 +4,8 @@ import Switch, { SwitchProps } from "@mui/material/Switch";
 import { useTheme } from "../../themeContext";
 import { useEffect, useState } from "react";
 
+//#618833
+
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,
@@ -27,7 +29,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     },
   },
   "& .MuiSwitch-thumb": {
-    backgroundColor: theme.palette.mode === "dark" ? "#003892" : "#001e3c",
+    backgroundColor: theme.palette.mode === "dark" ? "#618833" : "#618833",
     width: 32,
     height: 32,
     "&::before": {

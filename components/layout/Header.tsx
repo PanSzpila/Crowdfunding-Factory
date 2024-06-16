@@ -62,7 +62,7 @@ function AppAppBar() {
               boxShadow:
                 theme.palette.mode === "light"
                   ? `0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)`
-                  : "0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)",
+                  : "0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(97, 136, 51, 0,65), 4px 4px 12px -2.5px rgba(97, 136, 51, 0,65)",
             })}
           >
             <Box
@@ -86,7 +86,7 @@ function AppAppBar() {
                   }}
                 >
                   <Image
-                    src="/media/cglogo.svg"
+                    src="/media/cglogoGreen.svg"
                     alt="logo of Crowdfunding Gecko"
                     width={45}
                     height={45}
@@ -109,7 +109,7 @@ function AppAppBar() {
                       textDecoration: "none",
                       color: theme.palette.text.primary,
                     }}
-                    href="/"
+                    href="/#crowdfundings"
                   >
                     Crowdfundings
                   </Link>
@@ -161,6 +161,34 @@ function AppAppBar() {
                     }}
                   >
                     <DarkModeSwitch />
+                    <Button color="inherit">
+                      <Link
+                        style={{
+                          textDecoration: "none",
+                          color: theme.palette.text.primary,
+                        }}
+                        href="/#crowdfundings"
+                      >
+                        Crowdfundings
+                      </Link>
+                    </Button>
+                    <Link
+                      style={{
+                        textDecoration: "none",
+                        color: theme.palette.text.primary,
+                      }}
+                      href="/crowdfundings/new"
+                    >
+                      <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ ml: 1 }}
+                      >
+                        <AddBox />
+                      </IconButton>
+                    </Link>
                   </Box>
                 </Box>
               </Drawer>

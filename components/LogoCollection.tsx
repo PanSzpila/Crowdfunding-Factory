@@ -45,7 +45,7 @@ export default function LogoCollection() {
     theme.palette.mode === "light" ? darkLogosPath : whiteLogosPath;
 
   return (
-    <Box id="logoCollection" sx={{ py: 4 }}>
+    <Box id="logoCollection" sx={{ py: 4, my: "50px" }}>
       <Typography
         component="p"
         variant="subtitle2"

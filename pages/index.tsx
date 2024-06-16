@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 import { AddBox } from "@mui/icons-material";
 import Link from "next/link";
 import LogoCollection from "../components/LogoCollection";
+import Breadcrumb from "../components/Breadcrumb";
 
 interface IndexProps {
   crowdfundings: string[];
@@ -23,6 +24,7 @@ const index: IndexComponent = ({
 }) => {
   return (
     <Layout>
+      <Breadcrumb items={[{ text: "Home" }]} />
       <Readme />
       <LogoCollection />
       <h1> Open crowdfundings</h1>

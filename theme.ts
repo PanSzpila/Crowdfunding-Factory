@@ -9,6 +9,9 @@ export function useMyTheme(): Theme {
       createTheme({
         palette: {
           mode: state.darkMode ? "dark" : "light",
+          primary: {
+            main: "#618833", // Ustaw główny kolor na zielony
+          },
           // ...other values
         },
         // ...other values

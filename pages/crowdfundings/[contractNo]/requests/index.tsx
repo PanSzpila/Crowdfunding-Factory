@@ -16,6 +16,7 @@ import { AddCard } from "@mui/icons-material";
 import { useContractNo } from "../../../../shared/sharedFunctions";
 import Crowdfunding from "../../../../ethereum/crowdfunding";
 import RequestRow from "./RequestRow";
+import Breadcrumb from "../../../../components/Breadcrumb";
 
 interface Request {
   description: string;
@@ -73,6 +74,18 @@ const RequestsIndex: React.FC = () => {
   return (
     <div>
       <Layout>
+        <Breadcrumb
+          items={[
+            { text: "Home", href: "/" },
+            { text: "Crowdfundings", href: "/#crowdfundings" },
+            {
+              text: `Contract ${contractNo}`,
+              href: `/crowdfundings/${contractNo}`,
+            },
+            { text: "Spend requests" },
+          ]}
+        />
+
         <h1>Spend requests</h1>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">

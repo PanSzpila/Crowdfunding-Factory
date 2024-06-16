@@ -8,6 +8,7 @@ import web3 from "../../../../ethereum/web3";
 import ErrorModal from "../../../../components/ErrorModal";
 import { useRouter } from "next/router";
 import { useContractNo } from "../../../../shared/sharedFunctions";
+import Breadcrumb from "../../../../components/Breadcrumb";
 
 const RequestNew = () => {
   const [errModalMsg, setErrModalMsg] = useState<string>("");
@@ -55,10 +56,27 @@ const RequestNew = () => {
   };
   return (
     <Layout>
+      <Breadcrumb
+        items={[
+          { text: "Home", href: "/" },
+          { text: "Crowdfundings", href: "/#crowdfundings" },
+          {
+            text: `Contract ${contractNo}`,
+            href: `/crowdfundings/${contractNo}`,
+          },
+          {
+            text: "Spend requests",
+            href: `/crowdfundings/${contractNo}/requests`,
+          },
+          {
+            text: "Create request",
+          },
+        ]}
+      />
       <Link href={`/crowdfundings/${contractNo}/requests`}>
         <Button size="medium">Back</Button>
       </Link>
-      <h3>Create a Request</h3>
+      <h1>Create a Request</h1>
       <form onSubmit={handleSubmit}>
         <Box display="flex" flexDirection="column" alignItems="flex-start">
           <TextField
