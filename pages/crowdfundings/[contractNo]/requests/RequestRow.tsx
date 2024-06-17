@@ -10,7 +10,7 @@ interface RequestRowProps {
     value: string;
     recipient: string;
     complete: boolean;
-    approvalCount: string;
+    approvalCount: BigInt;
   };
   approversCount: number | null;
   contractNo: string | undefined;
@@ -22,7 +22,10 @@ const RequestRow: React.FC<RequestRowProps> = ({
   approversCount,
   contractNo,
 }) => {
-  const readyToFinalize: boolean = //TODO: assigned but never used
+  if (!request) {
+    return <p>no requests</p>;
+  }
+  const readyToFinalize: boolean =
     approversCount !== null
       ? Number(request.approvalCount) > approversCount / 2
       : false;
@@ -89,6 +92,7 @@ const RequestRow: React.FC<RequestRowProps> = ({
             size="small"
             color="secondary"
             onClick={() => handleRequest("finalizeRequest")}
+            disabled={!readyToFinalize}
           >
             Finalize
           </Button>

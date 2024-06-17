@@ -29,7 +29,7 @@ interface Request {
   value: string;
   recipient: string;
   complete: boolean;
-  approvalCount: string;
+  approvalCount: BigInt;
 }
 
 const RequestsIndex: React.FC = () => {
@@ -70,6 +70,7 @@ const RequestsIndex: React.FC = () => {
           approvalCount: request.approvalCount,
         })) as Request[];
         setRequests(newRequests);
+        console.log(newRequests);
         setrequestCount(Number(newRequestCount));
         setApproversCount(Number(newApproversCount));
       };
@@ -109,15 +110,20 @@ const RequestsIndex: React.FC = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {requests.map((request, index) => (
-                    <RequestRow
-                      key={index}
-                      id={index}
-                      request={request}
-                      approversCount={approversCount}
-                      contractNo={contractNo}
-                    />
-                  ))}
+                  {requests &&
+                    requests.length > 0 &&
+                    requests.every(
+                      (request) => request && request.approvalCount != undefined
+                    ) &&
+                    requests.map((request, index) => (
+                      <RequestRow
+                        key={index}
+                        id={index}
+                        request={request}
+                        approversCount={approversCount}
+                        contractNo={contractNo}
+                      />
+                    ))}
                 </TableBody>
               </Table>
             </TableContainer>
