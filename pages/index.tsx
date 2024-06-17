@@ -9,11 +9,7 @@ import { Theme } from "@mui/material/styles";
 import { useTheme } from "@mui/system";
 import Crowdfundings from "../components/Crowdfundings";
 
-interface IndexProps {
-  crowdfundings: string[];
-}
-
-const index: React.FC = () => {
+const Index: React.FC = () => {
   const theme = useTheme() as Theme;
   return (
     <Layout>
@@ -52,4 +48,4 @@ const index: React.FC = () => {
   );
 };
 
-export default index;
+export default Index;

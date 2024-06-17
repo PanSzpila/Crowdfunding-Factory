@@ -22,7 +22,7 @@ const RequestRow: React.FC<RequestRowProps> = ({
   approversCount,
   contractNo,
 }) => {
-  const readyToFinalize: boolean =
+  const readyToFinalize: boolean = //TODO: assigned but never used
     approversCount !== null
       ? Number(request.approvalCount) > approversCount / 2
       : false;

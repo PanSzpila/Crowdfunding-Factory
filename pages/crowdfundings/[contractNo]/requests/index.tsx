@@ -10,7 +10,6 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { AddCard } from "@mui/icons-material";
 import { useContractNo } from "../../../../shared/sharedFunctions";
@@ -34,7 +33,6 @@ interface Request {
 }
 
 const RequestsIndex: React.FC = () => {
-  const router = useRouter();
   const contractNo = useContractNo();
   const [requests, setRequests] = useState<Request[]>([]);
   const [approversCount, setApproversCount] = useState<number | null>(null);

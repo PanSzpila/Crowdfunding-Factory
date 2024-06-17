@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Typography, Modal, Box } from "@mui/material";
 
 const modalStyle = {

@@ -1,8 +1,6 @@
 import React, { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import { Container } from "@mui/system";
-import { useTheme } from "../../themeContext";
 
 interface LayoutProps {
   children: ReactNode;

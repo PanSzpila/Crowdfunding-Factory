@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../../components/layout/Layout";
-import { useRouter } from "next/router";
 import Crowdfunding from "../../../ethereum/crowdfunding";
 import ContractDetailCard from "../../../components/ContractDetailCard";
 import ContributeForm from "../../../components/ContributeForm";
@@ -27,7 +26,6 @@ const CrowdfundingShow: React.FC = () => {
     manager: string;
   };
 
-  const router = useRouter();
   const [summary, setSummary] = useState<Summary | null>(null);
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const contractNo = useContractNo();
@@ -40,11 +38,11 @@ const CrowdfundingShow: React.FC = () => {
   /*   useEffect(() => {
     console.log("equal=", contractNo === contractNo2, contractNo, contractNo2);
   }); */
-
   useEffect(() => {
     if (
       contractNo &&
       typeof contractNo === "string" &&
+      // eslint-disable-next-line eqeqeq
       contractNo.length == 42
     ) {
       const getInitialProps = async () => {
@@ -65,6 +63,7 @@ const CrowdfundingShow: React.FC = () => {
       };
       getInitialProps();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contractNo, refreshKey /*  router.isReady, router.asPath */]);
 
   return (

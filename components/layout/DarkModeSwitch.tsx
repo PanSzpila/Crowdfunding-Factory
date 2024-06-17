@@ -1,8 +1,7 @@
 import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch, { SwitchProps } from "@mui/material/Switch";
+import Switch from "@mui/material/Switch";
 import { useTheme } from "../../themeContext";
-import { useEffect, useState } from "react";
 
 //#618833
 

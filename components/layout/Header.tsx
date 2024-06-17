@@ -14,12 +14,6 @@ import Link from "next/link";
 import DarkModeSwitch from "./DarkModeSwitch";
 import { useTheme } from "@mui/system";
 
-const logoStyle = {
-  width: "auto",
-  height: "45px",
-  cursor: "pointer",
-};
-
 function AppAppBar() {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
