@@ -8,8 +8,8 @@ const whiteLogosPath = "media/techLogosWhite/";
 // const darkLogosPath = "media/techLogosDark/";
 
 const whiteLogos = [
-  "solidityWhite.png",
   "ethereum-eth-logo-full-horizontal.svg",
+  "solidityWhite.png",
   "Metamask-logo.svg",
   "webdotjs_logo_icon_249217.svg",
   "TypeScript_Logo.svg",
@@ -20,8 +20,8 @@ const whiteLogos = [
 ];
 
 // const darkLogos = [
-//   "solidity.png",
 //   "ethereum-eth-logo-full-horizontal.svg",
+//   "solidity.png",
 //   "Metamask-logo.svg",
 //   "webdotjs_logo_icon_249217.svg",
 //   "TypeScript_Logo.svg",
