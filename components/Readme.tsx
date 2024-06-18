@@ -36,18 +36,26 @@ const Readme = () => (
     <h4>The key improvement over traditional crowdfunding campaigns</h4>
     <p>
       Among the many startups worldwide seeking financing, there are numerous
-      scams and pretend ventures that in fact extort donors’ capital. Modern
+      scams and pretend ventures that in fact extort donors' capital. Modern
       blockchain technology, among its many advantages, can also prevent this
       practice. Imagine that neither the manager of a crowdfunding campaign nor
       anyone else in the world cannot make any withdrawals from crowdfunding
       without obtaining the donors' prior consent for each expenditure. Once the
       contract is concluded, the rules are permanently recorded in the
-      blockchain, so the capital is safer than in any bank. As safe as the
+      blockchain, so the capital is pro safer than in bank. As safe as the
       entire blockchain. Overall costs compared to a banking system with a human
       element and centralized infrastructure, can also be dramatically lower.
     </p>
 
     <h2>User manual divided into app screens</h2>
+
+    <p>
+      First of all, you need to have a Metamask wallet installed and set up. The
+      application will automatically connect to it and perform transactions. You
+      will just have to confirm them in your wallet each time. I would like to
+      remind you once again to switch your wallet to the test network, as I
+      described in the disclaimer.
+    </p>
 
     <h4>Home page</h4>
     <p>

@@ -79,9 +79,9 @@ function AppAppBar() {
                   <Image
                     src="/media/cglogoGreen.svg"
                     alt="logo of Crowdfunding Gecko"
-                    width={45}
-                    height={45}
-                    style={{ marginRight: "1rem" }}
+                    width={40}
+                    height={40}
+                    style={{ marginRight: "1rem", marginLeft: "5px" }}
                   />
                   Crowdfunding Gecko
                 </Link>

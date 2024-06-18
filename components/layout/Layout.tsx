@@ -11,16 +11,9 @@ const Layout = ({ children }: LayoutProps) => {
     <div
       style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
     >
-      {/* <Container maxWidth="xl"> */}
       <Header />
-      {/* <Container
-        maxWidth="xl"
-        style={{ flex: 1, overflow: "auto", marginTop: "100px" }}
-      > */}
       {children}
-      {/* </Container> */}
       <Footer />
-      {/* </Container> */}
     </div>
   );
 };
