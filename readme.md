@@ -14,11 +14,7 @@ Among the many startups worldwide seeking financing, there are numerous scams an
 
 ## User manual divided into app screens
 
-      First of all, you need to have a Metamask wallet installed and set up. The
-      application will automatically connect to it and perform transactions. You
-      will just have to confirm them in your wallet each time. I would like to
-      remind you once again to switch your wallet to the test network, as I
-      described in the disclaimer.
+First of all, you need to have a Metamask wallet installed and set up. The application will automatically connect to it and perform transactions. You will just have to confirm them in your wallet each time. I would like to remind you once again to switch your wallet to the test network, as I described in the disclaimer.
 
 ### Home page
 
