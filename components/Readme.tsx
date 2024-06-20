@@ -5,24 +5,12 @@ const Readme = () => (
 
     <h2>Disclaimer</h2>
     <p>
-      Your use of this website is at your own risk, regardless of your adherence
-      to the instructions below. Using this application may result in
-      irreversible loss of your crypto, for which I take no responsibility! Use
-      this application only on the testnet (currently Sepholia), where the coins
-      have no value, not on real crypto mainnets. If you are not familiar with
-      switching the nets, not sure what network your wallet is running on, do
-      not use this application. Test networks are being opened and closed, so it
-      is possible that I will change to another network in the future, possibly
-      without notice.
-    </p>
-
-    <p>
-      Testnets work identically to the mainnet, but are only used for
-      development and demonstration purposes, like this application. Before
-      clicking anything in this application, make sure you have switched your
-      wallet to Sepholia testnet and if it is on another network, switch to
-      Sepholia immediately. Then, just to be sure, check it every time before
-      confirming any transaction made using this application.
+      Use this website at your own risk, regardless of your adherence to the
+      instructions below. This application may result in irreversible loss of
+      your crypto. Use only on the testnet (currently Sepholia), where coins
+      have no value. If you are not sure what network your wallet is running on,
+      do not use this application. it is possible that I will change from
+      Sepholia to another test network in the future, possibly without notice.
     </p>
 
     <h2>What is Crowdfunding Gecko ?</h2>
