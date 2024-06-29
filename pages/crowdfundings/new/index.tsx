@@ -42,7 +42,7 @@ const CrowdfundingNew: React.FC = () => {
         router.push("/");
       } else {
         setErrModalMsg(
-          "No accounts available. Maybe there is no connection with your MetaMask Wallet?"
+          "No accounts available. You need to have a MetaMask Wallet installed and connected."
         );
       }
     } catch (err: any) {
